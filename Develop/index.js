@@ -1,13 +1,103 @@
 // TODO: Include packages needed for this application
+const inquirer = require("inquirer");
+const fs = require("fs");
+const generate = require("./utils/generateMarkdown.js");
 
 // TODO: Create an array of questions for user input
-const questions = [];
+const questions = [
+  {
+    type: "input",
+    message: "Whats the title of your readme?",
+    name: "title",
+  },
+  {
+    type: "input",
+    message:
+      "Provide a short description explaining the what, why, and how of your project:",
+    name: "description",
+  },
+  {
+    type: "input",
+    message: "Put in links for table of contents",
+    name: "table",
+  },
+  {
+    type: "input",
+    message:
+      "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running?",
+    name: "install",
+  },
+  {
+    type: "input",
+    message:
+      "Provide instructions and examples for use. Include screenshots as needed.",
+    name: "usage",
+  },
+  {
+    type: "input",
+    message:
+      "List your collaborators, if any, with links to their GitHub profiles. If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.If you followed tutorials, include links to those here as well.",
+    name: "credits",
+  },
+  {
+    type: "input",
+    message: "Do you have a license, if so which one?",
+    name: "license",
+  },
+  {
+    type: "input",
+    message:
+      "Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.",
+    name: "badges",
+  },
+  {
+    type: "input",
+    message: "If your project has a lot of features, list them here.",
+    name: "features",
+  },
+  {
+    type: "input",
+    message:
+      "If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.",
+    name: "contribute",
+  },
+  {
+    type: "input",
+    message:
+      "Go the extra mile and write tests for your application. Then provide examples on how to run them here.",
+    name: "tests",
+  },
+];
 
+function generateMarkdown(answer) {
+  const markdown = `# ${answer.title}`;
+
+  console.log(markdown);
+  return markdown;
+}
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>
+    err ? console.error(err) : console.log("success!")
+  );
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+// function init()
 
 // Function call to initialize app
-init();
+// init();
+
+inquirer
+  .prompt([...questions])
+  .then((answers) => {
+    const markdown = generateMarkdown(answers);
+    console.log("this should be markdown:", markdown);
+    writeToFile("README.md", markdown);
+  })
+
+  .catch((error) => {
+    if (error.isTtyError) {
+    } else {
+    }
+  });
