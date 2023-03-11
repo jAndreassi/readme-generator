@@ -7,65 +7,51 @@ const generate = require("./utils/generateMarkdown.js");
 const questions = [
   {
     type: "input",
-    message: "Whats the title of your readme?",
+    name: "github",
+    message: "What is your GitHub username?",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "What is your email address?",
+  },
+  {
+    type: "input",
     name: "title",
+    message: "What is your project's name?",
   },
   {
     type: "input",
-    message:
-      "Provide a short description explaining the what, why, and how of your project:",
     name: "description",
+    message: "Please write a short description of your project",
   },
   {
-    type: "input",
-    message: "Put in links for table of contents",
-    name: "table",
-  },
-  {
-    type: "input",
-    message:
-      "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running?",
-    name: "install",
-  },
-  {
-    type: "input",
-    message:
-      "Provide instructions and examples for use. Include screenshots as needed.",
-    name: "usage",
-  },
-  {
-    type: "input",
-    message:
-      "List your collaborators, if any, with links to their GitHub profiles. If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.If you followed tutorials, include links to those here as well.",
-    name: "credits",
-  },
-  {
-    type: "input",
-    message: "Do you have a license, if so which one?",
+    type: "list",
     name: "license",
+    message: "What kind of license should your project have?",
+    choices: ["MIT", "APACHE 2.0", "GPL 3.0", "BSD 3", "None"],
   },
   {
     type: "input",
-    message:
-      "Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.",
-    name: "badges",
+    name: "installation",
+    message: "What command should be run to install dependencies?",
+    default: "npm i",
   },
   {
     type: "input",
-    message: "If your project has a lot of features, list them here.",
-    name: "features",
+    name: "test",
+    message: "What command should be run to run tests?",
+    default: "npm test",
   },
   {
     type: "input",
-    message:
-      "If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer.",
-    name: "contribute",
+    name: "usage",
+    message: "What does the user need to know about using the repo?",
   },
   {
     type: "input",
-    message:
-      "Go the extra mile and write tests for your application. Then provide examples on how to run them here.",
-    name: "tests",
+    name: "contributing",
+    message: "What does the user need to know about contributing to the repo?",
   },
 ];
 
